@@ -475,7 +475,7 @@
 
 			<div style="position: relative; max-width: 320px; margin: 0 auto; background: #fff; border: 1px solid #ccc; padding: 5px; border-radius: 4px;" id="ref-board-wrapper">
 				<div class="sente-vertical" id="ref-sente">▲ 先手</div>
-				<img src="images1/同じ型.png" alt="歩1枚得の例" style="width: 100%; height: auto; display: block; margin: 0 auto;" onerror="this.onerror=null; this.src='images1/同じ型.jpg';">
+				<img src="images1/同じ型.png" alt="歩1枚得の例" style="width: 100%; height auto; display: block; margin: 0 auto;" onerror="this.onerror=null; this.src='images1/同じ型.jpg';">
 				<div class="gote-vertical" id="ref-gote">△ 後手</div>
 			</div>
 
@@ -727,7 +727,7 @@
 		{ no: "2横歩取り", image: "images1/2横歩取り.png", komadoku: "先手2歩・後手香交換", sashite: "△１七角成 手番▲先手", aiJudgment: "後手有利", aiMoves: [{move:"▲７四歩打", eval:"-345"}, {move:"▲３五角打", eval:"-386"}, {move:"▲７五銀", eval:"-395"}, {move:"▲５五角打", eval:"-403"}, {move:"▲２六角打", eval:"-420"}] },
 		{ no: "2雁木", image: "images1/2雁木.png", komadoku: "後手1歩得", sashite: "▲６五歩 手番△後手", aiJudgment: "後手優勢", aiMoves: [{move:"△７三桂", eval:"-848"}, {move:"△３一玉", eval:"-596"}, {move:"△８四角打", eval:"-570"}, {move:"△１四歩", eval:"-565"}, {move:"△８六歩", eval:"-540"}] },
 		{ no: "2向かい飛車", image: "images1/2向かい飛車.png", komadoku: "先手金銀1歩・後手角交換", sashite: "▲５四銀成 手番△後手", aiJudgment: "互角", aiMoves: [{move:"△７八成桂", eval:"8"}, {move:"△同金", eval:"553"}, {move:"△６九銀打", eval:"1246"}, {move:"△４八歩打", eval:"1488"}, {move:"△５八歩打", eval:"1510"}] },
-		{ no: "2三間飛車", image: "images1/2三間飛車.png", komadoku: "先手桂・後手2歩交換", sashite: "△６三香打 手番▲先手", aiJudgment: "互角", aiMoves: [{move:"▲７七金", eval:"-230"}, {move:"▲８五香打", eval:"-246"}, {move:"▲３二竜", eval:"-508"}, {move:"▲８五歩", eval:"-524"}, {move:"▲６三香打", eval:"-550"}] },
+		{ no: "2三間飛車", image: "images1/2三間飛車.png", komadoku: "先手桂・後手2歩交換", sashite: "△４三歩打 手番▲先手", aiJudgment: "互角", aiMoves: [{move:"▲７七金", eval:"-230"}, {move:"▲８五香打", eval:"-246"}, {move:"▲３二竜", eval:"-508"}, {move:"▲８五歩", eval:"-524"}, {move:"▲６三香打", eval:"-550"}] },
 		{ no: "2四間飛車", image: "images1/2四間飛車.png", komadoku: "先手角桂4歩・後手金香交換", sashite: "△９七歩成 手番▲先手", aiJudgment: "先手有利", aiMoves: [{move:"▲９四桂打", eval:"554"}, {move:"▲６四角", eval:"384"}, {move:"▲８四桂打", eval:"305"}, {move:"▲８四歩打", eval:"-182"}, {move:"▲８三歩打", eval:"-200"}] },
 		{ no: "2中飛車", image: "images1/2中飛車.png", komadoku: "先手金・後手桂1歩交換", sashite: "▲２九歩打 手番△後手", aiJudgment: "互角", aiMoves: [{move:"△同飛成", eval:"252"}, {move:"△２六飛成", eval:"893"}, {move:"△２七飛成", eval:"917"}, {move:"△同と", eval:"1046"}, {move:"△２五飛成", eval:"1080"}] },
 		{ no: "2相振り飛車逆", image: "images1/2相振り飛車逆.png", komadoku: "先手2銀・後手角桂香2歩交換", sashite: "△６五歩 手番▲先手", aiJudgment: "先手有利", aiMoves: [{move:"▲８九飛", eval:"350"}, {move:"▲８四歩打", eval:"184"}, {move:"▲８分歩打", eval:"120"}, {move:"▲８六銀打", eval:"-74"}, {move:"▲５三歩打", eval:"-110"}] },
@@ -1142,50 +1142,25 @@
 		answers: results
 		};
 
-		const GAS_URL = "https://script.google.com/macros/s/AKfycbykfyjOnYA7kzTb0pjSCyHBt_rzFTrJOMLCmfOFvVcKJLlK0AlURQNb-EfBs_X7se4h/exec";
+		const GAS_URL = "https://script.google.com/macros/s/AKfycbwqi3LErIKQ6IFiCel02mkGNw-eGKRTAJ5KEhdIbJNuUkfbxtByHGLp8Dta94WbgH6mJQ/exec";
 
-		const form = document.createElement("form");
-		form.method = "POST";
-		form.action = GAS_URL;
-		form.target = "hidden_iframe";
-
-		const input = document.createElement("input");
-		input.type = "hidden";
-		input.name = "data";
-		input.value = JSON.stringify(payload);
-
-		form.appendChild(input);
-
-		let iframe = document.getElementById("hidden_iframe");
-		if (!iframe) {
-		iframe = document.createElement("iframe");
-		iframe.name = "hidden_iframe";
-		iframe.id = "hidden_iframe";
-		iframe.style.display = "none";
-		document.body.appendChild(iframe);
-		}
-
-		document.body.appendChild(form);
-
-		let isSubmitted = false;
-		iframe.onload = function() {
-		if (!isSubmitted) {
-		isSubmitted = true;
+		fetch(GAS_URL, {
+		method: "POST",
+		mode: "no-cors",
+		headers: {
+		"Content-Type": "application/json"
+		},
+		body: JSON.stringify(payload)
+		})
+		.then(() => {
 		alert("スプレッドシートへのデータ送信が完了しました！");
 		showExperimentResults();
-		}
-		};
-
-		form.submit();
-		form.remove();
-
-		setTimeout(() => {
-		if (!isSubmitted) {
-		isSubmitted = true;
-		alert("スプレッドシートへのデータ送信が完了しました！");
+		})
+		.catch((error) => {
+		console.error("Error:", error);
+		alert("送信処理を完了しました。");
 		showExperimentResults();
-		}
-		}, 3000);
+		});
 		}
 
 		function showExperimentResults() {
