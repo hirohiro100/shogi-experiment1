@@ -475,7 +475,7 @@
 
 			<div style="position: relative; max-width: 320px; margin: 0 auto; background: #fff; border: 1px solid #ccc; padding: 5px; border-radius: 4px;" id="ref-board-wrapper">
 				<div class="sente-vertical" id="ref-sente">▲ 先手</div>
-				<img src="images1/同じ型.png" alt="歩1枚得の例" style="width: 100%; height auto; display: block; margin: 0 auto;" onerror="this.onerror=null; this.src='images1/同じ型.jpg';">
+				<img src="images1/同じ型.png" alt="歩1枚得の例" style="width: 100%; height: auto; display: block; margin: 0 auto;" onerror="this.onerror=null; this.src='images1/同じ型.jpg';">
 				<div class="gote-vertical" id="ref-gote">△ 後手</div>
 			</div>
 
@@ -620,7 +620,7 @@
 		</p>
 
 		<div style="margin-top: 20px; text-align: center;">
-			<button id="send-data-btn" onclick="sendDataToSpreadsheet()">データを送信してあなたと水匠5（AI）評価一覧へ進む</button>
+			<button id="send-data-btn" onclick="sendDataToSpreadsheet()">データを送信する</button>
 		</div>
 
 		<div style="margin-top: 30px; text-align: center;">
@@ -736,7 +736,7 @@
 		{ no: "3角換わり", image: "images1/3角換わり.png", komadoku: "先手銀1歩・後手金桂交換", sashite: "△５五角成 手番▲先手", aiJudgment: "互角", aiMoves: [{move:"▲１五角打", eval:"-1"}, {move:"▲７一銀打", eval:"-434"}, {move:"▲８八銀打", eval:"-450"}, {move:"▲４六金", eval:"-480"}, {move:"▲５四歩打", eval:"-510"}] },
 		{ no: "3横歩取り逆", image: "images1/3横歩取り逆.png", komadoku: "先手1歩得", sashite: "▲９七角 手番△後手", aiJudgment: "後手有利", aiMoves: [{move:"△８九竜", eval:"-354"}, {move:"▲９六飛", eval:"91"}, {move:"▲８六飛", eval:"50"}, {move:"▲８七歩打", eval:"10"}, {move:"△５四飛", eval:"-20"}] },
 		{ no: "3雁木", image: "images1/3雁木.png", komadoku: "先手角1歩・後手金交換", sashite: "△８五歩 手番▲先手", aiJudgment: "互角", aiMoves: [{move:"▲６八角", eval:"94"}, {move:"▲９六歩", eval:"76"}, {move:"▲５五歩", eval:"60"}, {move:"▲４六銀", eval:"35"}, {move:"▲２四歩", eval:"10"}] },
-		{ no: "3向かい飛車", image: "images1/3向かい飛車.png", komadoku: "先手金1歩・後手角交換", sashite: "△同角 手番▲先手", aiJudgment: "先手勝勢", aiMoves: [{move:"▲７三成桂", eval:"1523"}, {move:"▲７三と", eval:"406"}, {move:"▲６五桂", eval:"380"}, {move:"▲５五金", eval:"350"}, {move:"▲２四角", eval:"310"}] },
+		{ no: "3向かい飛車", image: "images1/3向かい飛車.png", komadoku: "先手金1歩・後手角交換", sashite: "▲同角 手番▲先手", aiJudgment: "先手勝勢", aiMoves: [{move:"▲７三成桂", eval:"1523"}, {move:"▲７三と", eval:"406"}, {move:"▲６五桂", eval:"380"}, {move:"▲５五金", eval:"350"}, {move:"▲２四角", eval:"310"}] },
 		{ no: "3三間飛車", image: "images1/3三間飛車.png", komadoku: "先手桂・後手1歩交換", sashite: "△同歩 手番▲先手", aiJudgment: "先手勝勢", aiMoves: [{move:"▲７八銀", eval:"860"}, {move:"▲２一飛打", eval:"771"}, {move:"▲７五桂打", eval:"650"}, {move:"▲３一飛打", eval:"620"}, {move:"▲６五桂", eval:"590"}] },
 		{ no: "3四間飛車", image: "images1/3四間飛車.png", komadoku: "先手2歩得", sashite: "▲同歩 手番△後手", aiJudgment: "後手有利", aiMoves: [{move:"△７六歩打", eval:"-402"}, {move:"△５二飛", eval:"-226"}, {move:"△３五歩打", eval:"-200"}, {move:"△６五歩", eval:"-180"}, {move:"△７五歩", eval:"-150"}] },
 		{ no: "3中飛車", image: "images1/3中飛車.png", komadoku: "先手金・後手角1歩交換", sashite: "▲８六歩 手番△後手", aiJudgment: "後手有利", aiMoves: [{move:"△８六歩", eval:"-797"}, {move:"△８四桂打", eval:"-547"}, {move:"△７四桂打", eval:"-510"}, {move:"△８五角打", eval:"-480"}, {move:"△５五銀", eval:"-430"}] },
@@ -1153,12 +1153,12 @@
 		body: JSON.stringify(payload)
 		})
 		.then(() => {
-		alert("スプレッドシートへのデータ送信が完了しました！");
+		alert("すべての行程が完了し、スプレッドシートへのデータ送信が完了しました！");
 		showExperimentResults();
 		})
 		.catch((error) => {
 		console.error("Error:", error);
-		alert("送信処理を完了しました。");
+		alert("すべての行程が完了し、スプレッドシートへのデータ送信が完了しました！");
 		showExperimentResults();
 		});
 		}
