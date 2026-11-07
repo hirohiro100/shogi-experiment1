@@ -697,7 +697,7 @@
 		no: "例3",
 		image: "images1/例3.png",
 		komadoku: "先手銀・後手金桂1歩交換",
-		sashite: "▲５一金 手番▲先手",
+		sashite: "△５一金 手番▲先手",
 		aiJudgment: "後手有利",
 		aiMoves: [{move:"▲４四銀成", eval:"-694"}, {move:"▲４四銀", eval:"-694"}, {move:"▲４六歩", eval:"-985"}, {move:"▲８二歩打", eval:"-994"}, {move:"▲１五歩", eval:"-994"}]
 		}
@@ -761,8 +761,8 @@
 
 		async function loadCsvFileDirectly() {
 		try {
-		// フォルダ「images1」内の全角「１」を含んだファイル名に指定
-		const response = await fetch('images1/駒得、評価値１.csv');
+		// 半角の「1」を含むファイル名を正確に指定
+		const response = await fetch('images1/駒得、評価値1.csv');
 		if (!response.ok) throw new Error("CSVファイルが見つかりません");
 		const csvText = await response.text();
 
@@ -849,7 +849,7 @@
 
 		} catch (err) {
 		console.error("CSVファイルの読み込みエラー:", err);
-		document.getElementById("loading-status").innerText = "⚠️ CSVの読み込みに失敗しました（images1/駒得、評価値１.csv の配置をご確認ください）";
+		document.getElementById("loading-status").innerText = "⚠️ CSVの読み込みに失敗しました（images1/駒得、評価値1.csv の配置をご確認ください）";
 		}
 		}
 
