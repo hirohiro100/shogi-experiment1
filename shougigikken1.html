@@ -373,7 +373,7 @@
 		<div class="notice-box">
 			<p style="margin: 0; font-weight: bold; color: #333;">■ 注意事項</p>
 			<ul style="margin: 8px 0 0 0; padding-left: 20px;">
-				<li>確実な正解がある問題ではありません。直感的に<strong>「ご自身がどう感じるか」</strong>をお答えください。</li>
+				<li>確実な正解がある問題ではありません。直感的に<strong>“ご自身がどう感じるか”</strong>をお答えください。</li>
 				<li><strong>制限時間は設けておりません。1問あたりお時間がかかる場合でも問題ございませんので、ご自身のペースでじっくりとお考えください。</strong></li>
 				<li><strong>一度回答して「次へ」進むと、ブラウザの「戻る」ボタン等で前の問題に戻ることはできませんのでご注意ください。</strong></li>
 				<li>ご回答いただいたデータは、研究・分析の目的に使用するものです。</li>
@@ -404,12 +404,12 @@
 
 		<div style="margin-bottom: 25px; text-align: center;">
 			<p style="font-size: 13px; color: #666; margin-bottom: 8px;">【データ送信画面の見本】</p>
-			<img src="images2/データ送信画面.png" alt="データ送信画面の見本" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 4px;" onerror="handleImageError(this)">
+			<img src="images1/データ送信画面.png" alt="データ送信画面の見本" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 4px;" onerror="handleImageError(this)">
 		</div>
 
 		<div style="margin-bottom: 25px; text-align: center;">
 			<p style="font-size: 13px; color: #666; margin-bottom: 8px;">【回答一覧画面の見本】</p>
-			<img src="images2/回答一覧.png" alt="回答一覧の見本" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 4px;" onerror="handleImageError(this)">
+			<img src="images1/回答一覧.png" alt="回答一覧の見本" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 4px;" onerror="handleImageError(this)">
 		</div>
 
 		<div style="text-align: right; margin-top: 30px;">
@@ -468,7 +468,7 @@
 
 			<div style="position: relative; max-width: 320px; margin: 0 auto; background: #fff; border: 1px solid #ccc; padding: 5px; border-radius: 4px;" id="ref-board-wrapper">
 				<div class="sente-vertical" id="ref-sente">▲ 先手</div>
-				<img src="images2/同じ型.png" alt="歩1枚得の例" style="width: 100%; height: auto; display: block; margin: 0 auto;" onerror="this.onerror=null; this.src='images2/同じ型.jpg';">
+				<img src="images1/同じ型.png" alt="歩1枚得の例" style="width: 100%; height: auto; display: block; margin: 0 auto;" onerror="this.onerror=null; this.src='images1/同じ型.jpg';">
 				<div class="gote-vertical" id="ref-gote">△ 後手</div>
 			</div>
 
@@ -506,7 +506,7 @@
 		<div class="board-container-outer">
 			<div class="board-wrapper" style="max-width: 320px; margin: 0 auto;" id="intro-board-wrapper">
 				<div class="sente-vertical" id="intro-sente">▲ 先手</div>
-				<img id="intro-board-image" src="images2/例1.png" alt="例の見本" class="board-img" onerror="handleImageError(this)">
+				<img id="intro-board-image" src="images1/例1.png" alt="例の見本" class="board-img" onerror="handleImageError(this)">
 				<div class="gote-vertical" id="intro-gote">△ 後手</div>
 			</div>
 		</div>
@@ -618,7 +618,7 @@
 
 		<div style="margin-top: 30px; text-align: center;">
 			<p style="font-size: 13px; color: #666; margin-bottom: 8px;">【データ送信画面の見本】</p>
-			<img src="images2/データ送信画面.png" alt="データ送信画面の見本" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 4px;" onerror="handleImageError(this)">
+			<img src="images1/データ送信画面.png" alt="データ送信画面の見本" style="max-width: 100%; height: auto; border: 1px solid #ccc; border-radius: 4px;" onerror="handleImageError(this)">
 		</div>
 	</div>
 
@@ -676,8 +676,7 @@
 	<script>
 		let ex1Data = {
 		no: "例1",
-		displayNo: "例1",
-		image: "images2/例1.png",
+		image: "images1/例1.png",
 		komadoku: "先手角1歩・後手金交換",
 		sashite: "▲１八角打 手番△後手",
 		aiJudgment: "互角",
@@ -687,8 +686,7 @@
 		let practiceQuestions = [
 		{
 		no: "例2",
-		displayNo: "例2",
-		image: "images2/例2.png",
+		image: "images1/例2.png",
 		komadoku: "駒どくなし",
 		sashite: "▲２二歩打 手番△後手",
 		aiJudgment: "互角",
@@ -696,8 +694,7 @@
 		},
 		{
 		no: "例3",
-		displayNo: "例3",
-		image: "images2/例3.png",
+		image: "images1/例3.png",
 		komadoku: "先手銀・後手金桂1歩交換",
 		sashite: "△５一金 手番▲先手",
 		aiJudgment: "後手有利",
@@ -763,7 +760,7 @@
 
 		async function loadCsvFileDirectly() {
 		try {
-		const response = await fetch('images2/駒得、評価値2.csv');
+		const response = await fetch('images1/駒得、評価値1.csv');
 		if (!response.ok) throw new Error("CSVファイルが見つかりません");
 		const csvText = await response.text();
 
@@ -772,7 +769,6 @@
 		let mainList = [];
 		let loadedPractices = [];
 		let ex1Obj = null;
-		let questionCounter = 1;
 
 		for (let i = 0; i < rows.length; i++) {
 		const r = rows[i];
@@ -801,47 +797,23 @@
 
 		let cleanedKoma = cleanKomadoku(colC);
 
+		let qObj = {
+		no: colA,
+		image: `images1/${colA}.png`,
+		komadoku: cleanedKoma,
+		sashite: colD,
+		aiJudgment: colE || "互角",
+		aiMoves: moves
+		};
+
 		if (colA === "例1") {
-		ex1Obj = {
-		no: colA,
-		displayNo: "例1",
-		image: `images2/${colA}.png`,
-		komadoku: cleanedKoma,
-		sashite: colD,
-		aiJudgment: colE || "互角",
-		aiMoves: moves
-		};
+		ex1Obj = qObj;
 		} else if (colA === "例2") {
-		loadedPractices[0] = {
-		no: colA,
-		displayNo: "例2",
-		image: `images2/${colA}.png`,
-		komadoku: cleanedKoma,
-		sashite: colD,
-		aiJudgment: colE || "互角",
-		aiMoves: moves
-		};
+		loadedPractices[0] = qObj;
 		} else if (colA === "例3") {
-		loadedPractices[1] = {
-		no: colA,
-		displayNo: "例3",
-		image: `images2/${colA}.png`,
-		komadoku: cleanedKoma,
-		sashite: colD,
-		aiJudgment: colE || "互角",
-		aiMoves: moves
-		};
+		loadedPractices[1] = qObj;
 		} else if (!colA.startsWith("例")) {
-		mainList.push({
-		no: colA,
-		displayNo: `問${questionCounter}`,
-		image: `images2/${colA}.png`,
-		komadoku: cleanedKoma,
-		sashite: colD,
-		aiJudgment: colE || "互角",
-		aiMoves: moves
-		});
-		questionCounter++;
+		mainList.push(qObj);
 		}
 		}
 
@@ -1030,7 +1002,7 @@
 		if (!selectedRadio) return;
 
 		practiceResults.push({
-		questionNo: practiceQuestions[currentPracticeIndex].displayNo,
+		questionNo: practiceQuestions[currentPracticeIndex].no,
 		userAnswer: selectedRadio.value
 		});
 
@@ -1137,7 +1109,7 @@
 		const responseTimeMs = Math.round(endTime - questionStartTime);
 
 		results.push({
-		questionNo: questions[currentIndex].displayNo,
+		questionNo: questions[currentIndex].no,
 		answer: selectedRadio.value,
 		startTime: questions[currentIndex].startISO,
 		responseTime: responseTimeMs
@@ -1192,7 +1164,7 @@
 		const userAns = results[idx] ? results[idx].answer : "未回答";
 		const tr = document.createElement("tr");
 		tr.innerHTML = `
-		<td style="font-weight: bold;">${q.displayNo}</td>
+		<td style="font-weight: bold;">${q.no}</td>
 		<td><strong>${userAns}</strong></td>
 		`;
 
@@ -1233,10 +1205,10 @@
 		<div style="font-size:11px; font-weight:bold; color:#555; margin-bottom:2px;">${cardSenteText}</div>
 		<img src="${q.image}" alt="本番局面図" onerror="handleImageError(this)">
 		<div style="font-size:11px; font-weight:bold; color:#555; margin-top:2px;">${cardGoteText}</div>
-		<div style="font-size:11px; color:#007bff; margin-top:4px; font-weight:bold;">${q.displayNo} (タップで拡大)</div>
+		<div style="font-size:11px; color:#007bff; margin-top:4px; font-weight:bold;">${q.no} (タップで拡大)</div>
 		</div>
 		<div class="result-info">
-		<h3 style="margin-bottom: 10px; font-size: 17px; color: #0056b3;">${q.displayNo} 解答</h3>
+		<h3 style="margin-bottom: 10px; font-size: 17px; color: #0056b3;">${q.no} 解答</h3>
 		<div class="result-row">
 		<div class="result-label">駒関係</div>
 		<div class="result-val"><strong>${q.komadoku}</strong></div>
