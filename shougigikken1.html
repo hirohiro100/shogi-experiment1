@@ -517,7 +517,7 @@
 
 		<div style="background: #f8f9fa; padding: 15px; border-radius: 6px; margin-top: 15px; border: 1px solid #dee2e6;">
 			<p><strong>【説明文】</strong></p>
-			<p>上記の画像画面のように将棋のある局面が提示されます。盤面の右上にある「▲ 先手」が先手、左下にある<strong>「△ 後手」</strong>が後手を表します。盤面の真下に表示されているのが駒どくや指し手・手番を表しています。ラジオボタンに先手勝勢〜後手勝勢のいずれかが選択できるようになっているので、局面をみて最も近い局面を選択してください。</p>
+			<p>上記の画像画面のように将棋のある局面が提示されます。盤面の右上にある「▲ 先手」が先手、左下にある<strong><span>△ 後手</span></strong>が後手を表します。盤面の真下に表示されているのが駒どくや指し手・手番を表しています。ラジオボタンに先手勝勢〜後手勝勢のいずれかが選択できるようになっているので、局面をみて最も近い局面を選択してください。</p>
 			<p><strong>例題は2問ありますので、2問やっていただいた後、本実験について回答していただければと思います。</strong></p>
 		</div>
 
@@ -665,7 +665,7 @@
 			</div>
 		</div>
 
-		<div style="margin: 25px 0 10px 0; font-weight: bold; color: #333; font-size: 17px;">■ 各問題の画像付き詳細解説</div>
+		<div style="margin: 25px 0 10px 0; font-weight: bold; color: #333; font-size: 17px;">■ あなたと水匠5（AI）の回答一覧</div>
 		<div id="experiment-feedback-container"></div>
 	</div>
 
@@ -719,7 +719,7 @@
 		});
 
 		function setupBoardOrientation(noStr, wrapperElem, senteElem, goteElem) {
-		if (noStr && noStr.includes("逆")) {
+		if (noStr && String(noStr).includes("逆")) {
 		senteElem.innerText = "△ 後手";
 		goteElem.innerText = "▲ 先手";
 		} else {
@@ -761,7 +761,6 @@
 
 		async function loadCsvFileDirectly() {
 		try {
-		// 半角の「1」を含むファイル名を正確に指定
 		const response = await fetch('images1/駒得、評価値1.csv');
 		if (!response.ok) throw new Error("CSVファイルが見つかりません");
 		const csvText = await response.text();
@@ -1196,7 +1195,7 @@
 		`;
 		});
 
-		let isInverse = q.no && q.no.includes("逆");
+		let isInverse = q.no && String(q.no).includes("逆");
 		let cardSenteText = isInverse ? "△ 後手" : "▲ 先手";
 		let cardGoteText = isInverse ? "▲ 先手" : "△ 後手";
 
@@ -1207,10 +1206,10 @@
 		<div style="font-size:11px; font-weight:bold; color:#555; margin-bottom:2px;">${cardSenteText}</div>
 		<img src="${q.image}" alt="本番局面図" onerror="handleImageError(this)">
 		<div style="font-size:11px; font-weight:bold; color:#555; margin-top:2px;">${cardGoteText}</div>
-		<div style="font-size:11px; color:#007bff; margin-top:4px; font-weight:bold;">${q.no} (タップで拡大)</div>
+		<div style="font-size:11px; color:#007bff; margin-top:4px; font-weight:bold;">問${q.no} (タップで拡大)</div>
 		</div>
 		<div class="result-info">
-		<h3 style="margin-bottom: 10px; font-size: 17px; color: #0056b3;">${q.no} 解答</h3>
+		<h3 style="margin-bottom: 10px; font-size: 17px; color: #0056b3;">問${q.no} 解答</h3>
 		<div class="result-row">
 		<div class="result-label">駒関係</div>
 		<div class="result-val"><strong>${q.komadoku}</strong></div>
