@@ -516,12 +516,12 @@
 
 		<div style="background: #f8f9fa; padding: 15px; border-radius: 6px; margin-top: 15px; border: 1px solid #dee2e6;">
 			<p><strong>【説明文】</strong></p>
-			<p>画面のように将棋の局面が提示されます。盤面の右上「▲ 先手」、左下<strong>「△ 後手」</strong>を確認し、7段階から形勢を選択してください。</p>
+			<p>画面のように将棋の局面が提示されます。盤面の右上「▲ 先手」、左下<strong><span>△ 後手</span></strong>を確認し、7段階から形勢を選択してください。</p>
 			<p><strong>例題は2問あります。</strong></p>
 		</div>
 
 		<div style="text-align: right; margin-top: 20px;">
-			<button onclick="startPractice()">例題（全2问）を始める</button>
+			<button onclick="startPractice()">例題（全2問）を始める</button>
 		</div>
 	</div>
 
@@ -609,11 +609,11 @@
 		<div class="part-badge">第1部 (1/4)</div>
 		<h2>実験完了</h2>
 		<p id="status-message" style="font-size: 16px; font-weight: bold; color: #0056b3; margin-top: 20px;">
-			すべての問題の回答が終了しました。以下のボタンを押して、回答結果をスプレッドシートへの送信およびCSVダウンロードを行ってください。
+			すべての問題の回答が終了しました。以下のボタンを押して、CSV保存および結果表示を行ってください。
 		</p>
 
 		<div style="margin-top: 20px; text-align: center;">
-			<button id="send-data-btn" onclick="sendDataAndDownloadCSV()">データを送信＆CSV保存する</button>
+			<button id="send-data-btn" onclick="sendDataAndDownloadCSV()">データを保存して結果を見る</button>
 		</div>
 
 		<div style="margin-top: 30px; text-align: center;">
@@ -631,7 +631,7 @@
 		<div style="background: #e8f4fd; border: 1px solid #bbe1fa; border-radius: 6px; padding: 15px; margin-bottom: 25px;">
 			<p style="margin: 0 0 8px 0; font-weight: bold; color: #004085;">⚠️ ご注意・ご案内</p>
 			<ul style="margin: 0; padding-left: 20px; font-size: 14px; color: #004085;">
-				<li>すべての行程が完了し、<strong>スプレッドシートへのデータ送信およびCSV出力が完了しました！</strong></li>
+				<li>すべての行程が完了し、<strong>CSVの出力（ダウンロード）が完了しました！</strong></li>
 				<li><strong>この回答一覧画面のスクリーンショットを撮影して保存してください。</strong></li>
 			</ul>
 		</div>
@@ -674,7 +674,6 @@
 	</div>
 
 	<script>
-		// 動的に外部（CSV/Excel）から読み込むための変数宣言
 		let ex1Data = null;
 		let practiceQuestions = [];
 		let questions = [];
@@ -689,11 +688,11 @@
 		const results = [];
 
 		window.addEventListener('DOMContentLoaded', () => {
-		loadDataDirectly();
+		loadDataFromFile();
 		});
 
 		function setupBoardOrientation(noStr, wrapperElem, senteElem, goteElem) {
-		if (noStr && noStr.includes("逆")) {
+		if (noStr && String(noStr).includes("逆")) {
 		senteElem.innerText = "△ 後手";
 		goteElem.innerText = "▲ 先手";
 		} else {
@@ -702,16 +701,11 @@
 		}
 		}
 
-		// Excel または CSV から自動でデータをロード
-		async function loadDataDirectly() {
-		const filesToTry = ['駒得、評価値 1.xlsx', '駒得、評価値 1.csv'];
-		let loaded = false;
-
-		for (let fileName of filesToTry) {
+		// shougigikken2.html と同様の安定したファイル読込（xlsx形式を優先対応）
+		async function loadDataFromFile() {
 		try {
-		const response = await fetch(fileName);
-		if (!response.ok) continue;
-
+		const response = await fetch('駒得、評価値 1.xlsx');
+		if (!response.ok) throw new Error("Excelファイルが見つかりません");
 		const arrayBuffer = await response.arrayBuffer();
 		const data = new Uint8Array(arrayBuffer);
 		const workbook = XLSX.read(data, { type: 'array' });
@@ -720,21 +714,27 @@
 		const worksheet = workbook.Sheets[firstSheetName];
 		const rows = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
-		parseRowsToData(rows);
-		loaded = true;
-		console.log(`${fileName} の読み込みに成功しました`);
-		break;
-		} catch (e) {
-		console.log(`${fileName} の読み込みスキップ:`, e);
+		parseRows(rows);
+		} catch (e1) {
+		console.log("Excel読込失敗、CSV読込を試行します:", e1);
+		try {
+		const response = await fetch('駒得、評価値 1.csv');
+		if (!response.ok) throw new Error("CSVファイルも取得できません");
+		const text = await response.text();
+		const workbook = XLSX.read(text, { type: 'string' });
+		const firstSheetName = workbook.SheetNames[0];
+		const worksheet = workbook.Sheets[firstSheetName];
+		const rows = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+		parseRows(rows);
+		} catch (e2) {
+		console.error("データファイルの読み込みに完全に失敗しました:", e2);
+		alert("「駒得、評価値 1.xlsx」または「駒得、評価値 1.csv」の読み込みに失敗しました。ファイル名や配置場所を確認してください。");
+		}
 		}
 		}
 
-		if (!loaded) {
-		alert("データファイル（駒得、評価値 1.xlsx または .csv）が読み込めませんでした。サーバー環境やファイル配置をご確認ください。");
-		}
-		}
-
-		function parseRowsToData(rows) {
+		function parseRows(rows) {
 		let mainMap = {};
 		let loadedPractices = [];
 		let ex1Obj = null;
@@ -1050,11 +1050,8 @@
 		}, 1000);
 		}
 
-		// 実験結果をCSV出力する処理
 		function exportCSV() {
 		let csvRows = [];
-
-		// ヘッダー行
 		csvRows.push(["被験者コード", "アプリ段位", "基準_有利", "基準_優勢", "基準_勝勢", "問題番号", "回答", "所要時間(秒)"]);
 
 		let appsStr = Object.entries(appRanksData).map(([k, v]) => `${k}:${v}`).join("; ");
@@ -1072,7 +1069,6 @@
 		]);
 		});
 
-		// BOMを付与して文字化け防止
 		let csvContent = "\uFEFF" + csvRows.map(e => e.map(val => `"${String(val).replace(/"/g, '""')}"`).join(",")).join("\n");
 		let blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
 		let url = URL.createObjectURL(blob);
