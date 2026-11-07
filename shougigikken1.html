@@ -4,8 +4,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>局面の形勢判断実験（第1部）</title>
-	<!-- Excel / CSV 読み込み用ライブラリ -->
-	<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 	<style>
 		body {
 			font-family: sans-serif;
@@ -763,7 +761,9 @@
 
 		async function loadCsvFileDirectly() {
 		try {
-		const response = await fetch('images1/駒得、評価値1.csv');
+		// shougigikken2.html と同様に、半角英数字のCSV名（例: komadoku_eval_1.csv など、またはご自身の環境に合わせたファイル名）を指定します。
+		// ※もしファイル名をそのまま「駒得、評価値1.csv」にする場合は encodeURIComponent または半角への変更を推奨します。
+		const response = await fetch('images1/komadoku_eval_1.csv').catch(() => fetch('images1/駒得、評価値1.csv'));
 		if (!response.ok) throw new Error("CSVファイルが見つかりません");
 		const csvText = await response.text();
 
@@ -850,7 +850,7 @@
 
 		} catch (err) {
 		console.error("CSVファイルの読み込みエラー:", err);
-		document.getElementById("loading-status").innerText = "⚠️ CSVの読み込みに失敗しました（images1/駒得、評価値1.csv の配置をご確認ください）";
+		document.getElementById("loading-status").innerText = "⚠️ CSVの読み込みに失敗しました（images1/ 配下のCSVファイル名・配置をご確認ください）";
 		}
 		}
 
